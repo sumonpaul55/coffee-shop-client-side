@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { createContext, useState } from 'react';
 import PropTypes from "prop-types"
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../firebase/firebase.cofig';
 const auth = getAuth(app);
 
@@ -15,7 +16,10 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-
+    const login = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+    }
 
 
 
@@ -23,7 +27,8 @@ const AuthProvider = ({ children }) => {
     const userInfo = {
         user,
         createUser,
-        loading
+        loading,
+        login
     }
     return (
         <AuthContext.Provider value={userInfo}>

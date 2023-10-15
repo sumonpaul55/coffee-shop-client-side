@@ -12,34 +12,43 @@ import SignIn from './components/signin/SignIn.jsx';
 import SignUp from './components/signup/SignUp.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import Users from './components/users/Users.jsx';
+import Root from './layout/Root.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
-    loader: () => fetch("http://localhost:5000/coffee"),
-    element: <App></App>,
+    element: <Root></Root>,
+    children: [
+      {
+        path: "/",
+        loader: () => fetch("http://localhost:5000/coffee"),
+        element: <App></App>
+      },
+      {
+        path: "/addCoffee",
+        element: <AddCoffee></AddCoffee>
+      },
+      {
+        path: "/updateCoffee/:id",
+        loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`),
+        element: <UpdateCoffee></UpdateCoffee>
+      }
+      , {
+        path: "/signin",
+        element: <SignIn></SignIn>
+      },
+      {
+        path: "/signup",
+        element: <SignUp></SignUp>
+      },
+      {
+        path: "/users",
+        loader: () => fetch(`http://localhost:5000/users`),
+        element: <Users></Users>
+      }
+    ]
   },
-  {
-    path: "/addCoffee",
-    element: <AddCoffee></AddCoffee>
-  },
-  {
-    path: "/updateCoffee/:id",
-    loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`),
-    element: <UpdateCoffee></UpdateCoffee>
-  }
-  , {
-    path: "/signin",
-    element: <SignIn></SignIn>
-  },
-  {
-    path: "/signup",
-    element: <SignUp></SignUp>
-  },
-  {
-    path: "/users",
-    loader: () => fetch(`http://localhost:5000/users`),
-    element: <Users></Users>
-  }
+
 
 ]);
 
