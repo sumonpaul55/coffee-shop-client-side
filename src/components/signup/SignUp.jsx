@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
+    const { createUser } = useContext(AuthContext)
     const handelSubmit = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({ email, password })
+        createUser(email, password)
+            .then(result => {
+                const createdTime = result.user?.metadata?.creationTime;
+                const user = { email, createdTime }
+                console.log(result.user)
+                fetch("http://localhost:5000/user", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => console.log(data))
+
+            })
+            .catch(err => console.log(err))
     }
     return (
         <div className="hero min-h-screen bg-base-200">
