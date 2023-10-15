@@ -46,13 +46,16 @@ const Users = () => {
         <div className='container mx-auto'>
             <h2 className="text-3xl">Users</h2>
             <div>
-                <div className="overflow-x-auto max-w-[600px] mx-auto mt-20">
+                <div className="overflow-x-auto max-w-[800px] mx-auto mt-20">
                     <table className="table border p-5">
                         {/* head */}
                         <thead>
                             <tr>
+                                <th>No.</th>
                                 <th>Email</th>
                                 <th>Account Created At</th>
+                                <th>action</th>
+                                <th>Last Logged in</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,6 +69,7 @@ const Users = () => {
                                         <td>
                                             <button onClick={() => handleDelete(user._id)} className='bg-gray-300 font-semibold hover:bg-gray-500 duration-300 hover:text-white p-1'>Delete</button>
                                         </td>
+                                        <td className='font-medium'>{user.lastLoggedIngAt ? user.lastLoggedIngAt : "Not login yet"}</td>
                                     </tr>
                                 ))
                             }
