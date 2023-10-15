@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext)
@@ -19,10 +21,14 @@ const SignUp = () => {
                     body: JSON.stringify(user)
                 })
                     .then(res => res.json())
-                    .then(data => console.log(data))
+                    .then(data => {
+                        Swal.fire(`User Created Successfully`)
+                    })
 
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                Swal.fire(`${err}`)
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
