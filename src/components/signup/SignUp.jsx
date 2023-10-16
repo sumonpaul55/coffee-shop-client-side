@@ -14,7 +14,6 @@ const SignUp = () => {
             .then(result => {
                 const createdTime = result.user?.metadata?.creationTime;
                 const user = { email, createdTime }
-                console.log(result.user)
                 fetch("http://localhost:5000/user", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
