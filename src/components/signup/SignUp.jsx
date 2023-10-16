@@ -14,7 +14,7 @@ const SignUp = () => {
             .then(result => {
                 const createdTime = result.user?.metadata?.creationTime;
                 const user = { email, createdTime }
-                fetch("https://coffee-shop-server-sigma.vercel.app/user", {
+                fetch("http://localhost:5000/user", {
                     method: "POST",
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify(user)

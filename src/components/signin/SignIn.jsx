@@ -16,7 +16,7 @@ const SignUp = () => {
                     email,
                     lastLoggedIn: result.user?.metadata?.lastSignInTime
                 }
-                fetch("https://coffee-shop-server-sigma.vercel.app/loggedInusers", {
+                fetch("http://localhost:5000/loggedInusers", {
                     method: "PATCH",
                     headers: { "content-type": "application/json" },
                     body: JSON.stringify(user)

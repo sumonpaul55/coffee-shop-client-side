@@ -6,6 +6,7 @@ const Users = () => {
     const loadedusers = useLoaderData();
     const [users, setUsers] = useState(loadedusers)
 
+
     // console.log(users)
     const handleDelete = (_id) => {
         // console.log(e)
@@ -19,7 +20,7 @@ const Users = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://coffee-shop-server-sigma.vercel.app/deleteUser/${_id}`, {
+                fetch(`http://localhost:5000/deleteUser/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

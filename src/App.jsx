@@ -5,7 +5,6 @@ import Coffee from './components/coffee/Coffee';
 const App = () => {
   const loadedCoffees = useLoaderData();
   const [coffees, setCoffees] = useState(loadedCoffees)
-
   return (
     <div className='container mx-auto'>
       <h1 className='text-4xl text-center text-purple-400 font-semibold'>Coffee shop</h1>

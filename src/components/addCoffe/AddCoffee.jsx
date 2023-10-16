@@ -14,7 +14,7 @@ const AddCoffee = () => {
         const photo = form.photo.value;
         const coffee = { name, quantity, supplier, taste, category, detail, photo }
         // send data to the server
-        fetch("https://coffee-shop-server-sigma.vercel.app/coffee", {
+        fetch("http://localhost:5000/coffee", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(coffee)
