@@ -23,7 +23,7 @@ const Coffee = ({ coffee, coffees, setCoffees }) => {
             if (result.isConfirmed) {
                 // delete method here........
                 console.log(_id)
-                fetch(`http://localhost:5000/coffee/${_id}`, {
+                fetch(`https://coffee-shop-server-sigma.vercel.app/coffee/${_id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
